@@ -1,9 +1,9 @@
-* Do today’s work on a branch called busmall-start.
+* ~~Do today’s work on a branch called busmall-start.~~
 
-* Create a new repo for this weekly project called bus-mall at the root level of your ~/CF/201 directory.
-* Scaffold your repo with the usual README, CSS, JS, and HTML files, plus a img/ directory.
-* Include in your repository a .eslintrc.json file whose contents are copied from the eslintrc.json file in the class repository.
-* Retrieve the assets from the assets/ directory and place them in your image directory.
+* ~~Create a new repo for this weekly project called bus-mall at the root level of your ~/CF/201 directory.~~
+* ~~Scaffold your repo with the usual README, CSS, JS, and HTML files, plus a img/ directory.~~
+* ~~Include in your repository a .eslintrc.json file whose contents are copied from the eslintrc.json file in the class repository.~~
+* ~~Retrieve the assets from the assets/ directory and place them in your image directory.~~
 * Write your user stories as described above and place them in a file called user_stories.md in your repo. Utilize good Markdown style to make this document look nice.
 * The thing you want to build today will select three random photos from the image directory and display them side-by-side-by-side in the browser window.
 * In addition, you’ll want to be able to receive clicks on those displayed images, and track those clicks for each image. You’ll also want to track how many times each image is displayed, for statistical purposes.
