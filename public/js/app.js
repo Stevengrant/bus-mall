@@ -49,7 +49,7 @@ var pickAndDrawImages = () => {
     prod3Index = rollRandom(0, products.length - 1);
 
   } while (prod1Index === prod2Index || prod2Index === prod3Index || prod3Index === prod1Index);
-  //TODO->Refactor this shit is wet as fuck.
+  //TODO->Refactor this shit is wet as flip.
   //grab Containers
   let imgOneContainer = document.getElementById('img-one'),
     imgTwoContainer = document.getElementById('img-two'),
