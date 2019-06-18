@@ -54,3 +54,10 @@ main h1 {
   font-size:3em;
   text-align: center;
 }
+#myChart {
+  height:400px;
+}
+.chart-size {
+  width:400px;
+  height:400px;
+}
