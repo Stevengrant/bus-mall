@@ -65,6 +65,7 @@ function drawChart(voteHistory) {
   let voteData = shapeVoteHistoryData(voteHistory, productNames);
   // Yoink => https://www.chartjs.org/docs/latest/
   let ctx = document.getElementById('myChart').getContext('2d');
+  // eslint-disable-next-line no-undef
   new Chart(ctx, {
     type: 'bar',
     data: {
@@ -78,18 +79,27 @@ function drawChart(voteHistory) {
     options: {
     }
   });
-  //var prodPwrEl = document.getElementById('product-power');
-  // var productPower = new Chart(prodPwrEl,{
-  //   type:'bar',
-  //   data: productNames,
-  //   datasets: [
-  //     {
-  //       label:'Product Power',
-  //       data:powerRatio,
 
-  //     }
-  //   ]
-  // });
+  let productPower = [];
+  products.forEach( e => {
+    productPower.push(e.productPower * 42);
+  });
+
+  let productPowerElem = document.getElementById('productPower').getContext('2d');
+  // eslint-disable-next-line no-undef
+  new Chart(productPowerElem, {
+    type: 'bar',
+    data: {
+      labels: productNames,
+      datasets: [{
+        label: 'Product Power',
+        data: productPower,
+        borderWidth: 5
+      }]
+    },
+    options: {
+    }
+  });
 }
 
 //Setup to create elements:
@@ -155,7 +165,6 @@ var pickAndDrawImages = () => {
   imgThree.src = products[prod3Index].imgSRC;
   imgThree.id = '2';
   imgThree.setAttribute('name', products[prod3Index].name);
-
 
   //Create image titles and set values
   let imgOneTitle = document.createElement('h3');
