@@ -1,13 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Bus Mall</title>
   <link rel="stylesheet" href="./public/styles/reset.css">
   <link rel="stylesheet" href="./public/styles/style.css">
 
 </head>
+
 <body>
-  
+  <main class="content">
+    <h1>Pick your favorite product!</h1>
+    <hr>
+    <table id="image-table" class="content">
+      <tr>
+        <!-- Three Random images go here-->
+        <td id="img-one"></td>
+        <td id="img-two"></td>
+        <td id="img-three"></td>
+      </tr>
+    </table>
+  </main>
+  <input type="checkbox" checked class="marketHide">
+  <section class="content marketInfo">
+    <h2>Marketing</h2>
+    <!--Ranked products w/ score-->
+    <ol class="middle">
+      <li>Prod 1 0.7</li>
+      <li>Prod 2 0.62</li>
+      <li>Prod 3 0.6</li>
+      <li>Prod 4 0.58</li>
+      <li>Prod 5 0.3</li>
+      <li>Prod 6 0.118</li>
+      <li>Prod 7 0.1</li>
+      <li>Prod 8 0.008</li>
+    </ol>
+    <table>
+      <thead>
+        <tr>
+          <td>Product 1</td>
+          <td>Product 2</td>
+          <td>Product 3</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bag 1</td>
+          <td>Bag 2</td>
+          <td class="round-winner">Bag 3 </td>
+        </tr>
+        <tr>
+          <td>Bag 1</td>
+          <td class="round-winner">Bag 2</td>
+          <td>Bag 3 </td>
+        </tr>
+        <tr>
+          <td class="round-winner">Bag 1</td>
+          <td>Bag 2</td>
+          <td>Bag 3 </td>
+        </tr>
+        <tr>
+          <td>Bag 1</td>
+          <td>Bag 2</td>
+          <td class="round-winner">Bag 3 </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 </body>
 <script src="./public/js/app.js"></script>
+
 </html>
