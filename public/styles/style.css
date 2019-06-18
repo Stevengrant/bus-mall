@@ -37,6 +37,12 @@ main {
 .marketHide:checked + .marketInfo{
   display: none;
 }
+.marketInfo {
+  display: block;
+  width:800px;
+  margin:auto;
+  overflow: hidden;
+}
 .round-winner {
   background:#75cc43;
 }
@@ -53,4 +59,12 @@ table {
 main h1 {
   font-size:3em;
   text-align: center;
+}
+#myChart {
+  height:400px;
+}
+.chart-size {
+  height:400px;
+  width:400px;
+  float: left;
 }
