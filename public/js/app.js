@@ -1,8 +1,8 @@
 'use strict';
-var voteCount = 0;
+var voteCount = localStorage.getItem('voteCount');
 var showResAfter = 25;
-var products = [];
-var voteHistory = [];
+var products = getInfo('products') ? getInfo('products') : [] ;
+var voteHistory = getInfo('voteHistory') ? getInfo('voteHistory') : [] ;
 var availableToDisplay = products, displayThese = [], iceThese = [];
 //Constructors
 var Product = function (name, imgSRC) {
@@ -23,15 +23,29 @@ var Vote = function (winningSpot, winnerName) {
   } else {
     this.three = true;
   }
+
   this.winnerName = winnerName;
   //every time a vote is created, the vote is pushed to the vote history.
   voteCount++;
-  if (voteCount > showResAfter-1){
-    imageTable.removeEventListener('click');
-  }
+  localStorage.setItem('voteCount',voteCount);
+  // if (voteCount > showResAfter - 1) {
+  //   if (!removedClickListener){
+  //     imageTable.removeEventListener('click');
+  //     removedClickListener=true;
+  //   }
+  // }
   voteHistory.push(this);
+  updateVoteHistory('voteHistory', this);
 };
-
+function updateVoteHistory(key, data) {
+  let a = JSON.parse(localStorage.getItem(key));
+  let b = a? a : [];
+  b.push(data);
+  localStorage.setItem(key, JSON.stringify(b));
+}
+function getInfo(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
 var imageTable = document.getElementById('image-table');
 imageTable.addEventListener('click', (event) => {
   let eID = event.target.id;
@@ -40,9 +54,8 @@ imageTable.addEventListener('click', (event) => {
     let winningProd = products[winnerIndex];
     winningProd.votes++;
     winningProd.productPower = winningProd.votes / winningProd.timesShown;
-    // products[winnerIndex].productPower = votesA/products[winnerIndex].timesShown;
 
-    new Vote(eID, event.target.attributes.name);
+    new Vote(eID, event.target.attributes.name.value);
     pickAndDrawImages();
     if (voteCount > showResAfter) {
       drawChart(voteHistory);
@@ -55,10 +68,10 @@ function shapeVoteHistoryData(voteHistory, productNames) {
   for (let prodNameIndex = 0; prodNameIndex < productNames.length; prodNameIndex++) {
     res.push(0);
     for (let vHI = 0; vHI < voteHistory.length; vHI++) {
-      let bar = productNames[prodNameIndex];
-      let bazz = voteHistory[vHI].winnerName.textContent;
-      let foo = bar.indexOf(bazz);
-      if (foo > -1) {
+      let prodNameA = productNames[prodNameIndex];
+      let prodNameB = voteHistory[vHI].winnerName;
+      let indexOfprod = prodNameA.indexOf(prodNameB);
+      if (indexOfprod > -1) {
         res[prodNameIndex]++;
       }
     }
@@ -83,7 +96,6 @@ function drawChart(voteHistory) {
     options: {
     }
   });
-
   let productPower = [];
   products.forEach(e => {
     productPower.push(e.productPower * 42);
@@ -122,6 +134,7 @@ function findProductIndex(products, name) {
 function generateProducsArray() {
   for (let i = 0; i < productNames.length; i++) {
     products.push(new Product(productNames[i].split('.')[0], `./public/img/${productNames[i]}`));
+    localStorage.setItem('products', JSON.stringify(products));
   }
 }
 generateProducsArray();
@@ -132,9 +145,9 @@ var pickAndDrawImages = () => {
       Math.random() * Math.random() * (max - min + 1)
     ) + min;
   };
-  let foo = availableToDisplay.concat(iceThese);
-  availableToDisplay = foo;
-  iceThese =[];
+  let combinedArray = availableToDisplay.concat(iceThese);
+  availableToDisplay = combinedArray;
+  iceThese = [];
   iceThese = displayThese;
   displayThese = [];
 
@@ -144,7 +157,7 @@ var pickAndDrawImages = () => {
     let holder = availableToDisplay.splice(rndmNmb, 1);
     displayThese.push(holder[0]);
   }
-  for (let i = 0; i < displayThese.length; i++){
+  for (let i = 0; i < displayThese.length; i++) {
     let imgContainer = document.getElementById(`img-${i}`);
     imgContainer.innerHTML = '';
     let imgEl = document.createElement('img');
@@ -156,7 +169,14 @@ var pickAndDrawImages = () => {
     imgContainer.appendChild(imgTitle);
     imgContainer.appendChild(imgEl);
   }
+  localStorage.setItem('products', JSON.stringify(products));
+
 };
 // pick three random/different products;
 pickAndDrawImages();
+
+if (voteCount > showResAfter){
+  console.log(voteHistory);
+  drawChart(voteHistory);
+}
 
