@@ -141,8 +141,8 @@ var pickAndDrawImages = () => {
   for (let i = 0; i < 3; i++) {
     let rndmNmb = rollRandom(0, availableToDisplay.length - 1);
     products[rndmNmb].timesShown++;
-    let holder = availableToDisplay.splice(rndmNmb, 1);
-    displayThese.push(holder[0]);
+    availableToDisplay.splice(rndmNmb, 1);
+    displayThese.push(holder);
   }
   for (let i = 0; i < displayThese.length; i++){
     let imgContainer = document.getElementById(`img-${i}`);
