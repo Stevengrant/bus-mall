@@ -28,12 +28,6 @@ var Vote = function (winningSpot, winnerName) {
   //every time a vote is created, the vote is pushed to the vote history.
   voteCount++;
   localStorage.setItem('voteCount',voteCount);
-  // if (voteCount > showResAfter - 1) {
-  //   if (!removedClickListener){
-  //     imageTable.removeEventListener('click');
-  //     removedClickListener=true;
-  //   }
-  // }
   voteHistory.push(this);
   updateVoteHistory('voteHistory', this);
 };
